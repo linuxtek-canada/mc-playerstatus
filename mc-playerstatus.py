@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+#Author:    TheOneBlackMage
+#Email:     theoneblackmage@gmail.com
+
 # This is the mc-playerstatus main script.  Check to see how many users are on the server.  If there are 0 players for over 30 minutes, shut down the server.
 # This script is intended to run from 12AM-8AM EST to save compute on GCP
 
