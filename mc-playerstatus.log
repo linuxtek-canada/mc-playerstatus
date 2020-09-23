@@ -1,0 +1,78 @@
+2020-09-22 17:55:13,185 - INFO - #####################################################
+2020-09-22 17:55:13,185 - INFO - Script Startup.  Shutdown Count = 0.
+2020-09-22 17:55:13,185 - INFO - #####################################################
+2020-09-22 17:55:13,185 - DEBUG - The current hour is 17
+2020-09-22 17:55:13,185 - DEBUG - The script will run during this time.
+2020-09-22 17:55:13,340 - DEBUG - The ping was successful.
+2020-09-22 17:55:13,340 - INFO - The ping time was 1.538ms.
+2020-09-22 17:55:13,431 - DEBUG - The query was successful.
+2020-09-22 17:55:13,431 - INFO - The Player Count Is 0
+2020-09-22 17:55:13,431 - DEBUG - No players on the server.  Incrementing shutdown value to 1.
+2020-09-22 17:55:13,431 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:14,432 - DEBUG - The script will run during this time.
+2020-09-22 17:55:14,562 - DEBUG - The ping was successful.
+2020-09-22 17:55:14,562 - INFO - The ping time was 2.971ms.
+2020-09-22 17:55:14,638 - DEBUG - The query was successful.
+2020-09-22 17:55:14,638 - INFO - The Player Count Is 0
+2020-09-22 17:55:14,638 - DEBUG - No players on the server.  Incrementing shutdown value to 2.
+2020-09-22 17:55:14,638 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:15,639 - DEBUG - The script will run during this time.
+2020-09-22 17:55:15,742 - DEBUG - The ping was successful.
+2020-09-22 17:55:15,742 - INFO - The ping time was 1.151ms.
+2020-09-22 17:55:15,895 - DEBUG - The query was successful.
+2020-09-22 17:55:15,895 - INFO - The Player Count Is 0
+2020-09-22 17:55:15,896 - DEBUG - No players on the server.  Incrementing shutdown value to 3.
+2020-09-22 17:55:15,896 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:16,897 - DEBUG - The script will run during this time.
+2020-09-22 17:55:17,002 - DEBUG - The ping was successful.
+2020-09-22 17:55:17,002 - INFO - The ping time was 0.93ms.
+2020-09-22 17:55:17,093 - DEBUG - The query was successful.
+2020-09-22 17:55:17,093 - INFO - The Player Count Is 0
+2020-09-22 17:55:17,094 - DEBUG - No players on the server.  Incrementing shutdown value to 4.
+2020-09-22 17:55:17,094 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:18,095 - DEBUG - The script will run during this time.
+2020-09-22 17:55:18,198 - DEBUG - The ping was successful.
+2020-09-22 17:55:18,198 - INFO - The ping time was 2.647ms.
+2020-09-22 17:55:18,278 - DEBUG - The query was successful.
+2020-09-22 17:55:18,278 - INFO - The Player Count Is 0
+2020-09-22 17:55:18,278 - DEBUG - No players on the server.  Incrementing shutdown value to 5.
+2020-09-22 17:55:18,278 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:19,279 - DEBUG - The script will run during this time.
+2020-09-22 17:55:19,373 - DEBUG - The ping was successful.
+2020-09-22 17:55:19,373 - INFO - The ping time was 1.368ms.
+2020-09-22 17:55:19,453 - DEBUG - The query was successful.
+2020-09-22 17:55:19,453 - INFO - The Player Count Is 0
+2020-09-22 17:55:19,454 - DEBUG - No players on the server.  Incrementing shutdown value to 6.
+2020-09-22 17:55:19,454 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:20,455 - DEBUG - The script will run during this time.
+2020-09-22 17:55:20,574 - DEBUG - The ping was successful.
+2020-09-22 17:55:20,574 - INFO - The ping time was 1.25ms.
+2020-09-22 17:55:20,654 - DEBUG - The query was successful.
+2020-09-22 17:55:20,654 - INFO - The Player Count Is 0
+2020-09-22 17:55:20,654 - DEBUG - No players on the server.  Incrementing shutdown value to 7.
+2020-09-22 17:55:20,654 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:21,655 - DEBUG - The script will run during this time.
+2020-09-22 17:55:21,737 - DEBUG - The ping was successful.
+2020-09-22 17:55:21,738 - INFO - The ping time was 0.935ms.
+2020-09-22 17:55:21,830 - DEBUG - The query was successful.
+2020-09-22 17:55:21,830 - INFO - The Player Count Is 0
+2020-09-22 17:55:21,830 - DEBUG - No players on the server.  Incrementing shutdown value to 8.
+2020-09-22 17:55:21,830 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:22,831 - DEBUG - The script will run during this time.
+2020-09-22 17:55:22,924 - DEBUG - The ping was successful.
+2020-09-22 17:55:22,924 - INFO - The ping time was 1.285ms.
+2020-09-22 17:55:23,002 - DEBUG - The query was successful.
+2020-09-22 17:55:23,003 - INFO - The Player Count Is 0
+2020-09-22 17:55:23,003 - DEBUG - No players on the server.  Incrementing shutdown value to 9.
+2020-09-22 17:55:23,003 - DEBUG - Sleeping for check interval - 1 minutes
+2020-09-22 17:55:24,004 - DEBUG - The script will run during this time.
+2020-09-22 17:55:24,119 - DEBUG - The ping was successful.
+2020-09-22 17:55:24,119 - INFO - The ping time was 1.092ms.
+2020-09-22 17:55:24,198 - DEBUG - The query was successful.
+2020-09-22 17:55:24,198 - INFO - The Player Count Is 0
+2020-09-22 17:55:24,198 - DEBUG - No players on the server.  Incrementing shutdown value to 10.
+2020-09-22 17:55:24,198 - DEBUG - Shutdown Count:  10, Shutdown Threshold: 10
+2020-09-22 17:55:24,198 - INFO - Shutdown threshold has been reached.  Shutting down the server.
+2020-09-22 17:55:24,198 - DEBUG - Attempting to run backup script.
+2020-09-22 17:56:43,587 - DEBUG - Subprocess Return Code: 0
+2020-09-22 17:56:43,587 - INFO - The backup script was successfully run

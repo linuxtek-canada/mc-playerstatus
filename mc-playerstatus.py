@@ -101,12 +101,14 @@ while True:
             #This section may need to be commented out, or the COMMAND changed to something non-critical.  Leaving Hello World test command as an option.
             #COMMAND = "echo 'Hello World' >> /home/minecraft/test.txt"
 
-            COMMAND = "/home/minecraft/mc-backup.sh"
+            COMMAND = "bash /home/minecraft/mc-backup.sh"
             ssh = subprocess.Popen(['ssh', '-i', server_ssh_id_path, "{}@{}".format(server_username,server_name), COMMAND],shell=False,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             res = ssh.communicate()
             logging.debug("Subprocess Return Code: %s",ssh.returncode)
-            logging.debug("Result: %s",res)
-            logging.debug("Standard Error: %s",res[1])
+
+            #Note:  The below debug lines will pull all of the script console information in the log unformatted.  Only use if you must debug the backup script.  Better to do this locally.
+            #logging.debug("Result: %s",res)
+            #logging.debug("Standard Error: %s",res[1])
             
             if ssh.returncode == 0:
                 logging.info("The backup script was successfully run")
@@ -116,8 +118,19 @@ while True:
                 shutdown_count = 0
                 logging.warning("Resetting Shutdown Count to %s",shutdown_count)
                
-            #If the server
-
+            #If the backup succeeds, proceed to shutdown the server.
+            
+            COMMAND = "sudo shutdown -h now"
+            ssh = subprocess.Popen(['ssh', '-i', server_ssh_id_path, "{}@{}".format(server_username,server_name), COMMAND],shell=False,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            res = ssh.communicate()
+            logging.debug("Subprocess Return Code: %s",ssh.returncode)
+            
+            if ssh.returncode == 0:
+                logging.info("Server %s shut down successfully",server_name)
+                exit(0)
+            else:
+                logging.warning("Server shutdown was unsuccessful.")
+                exit(1)             
     else:
         #If the ping is unsuccessful, increment the error count.
         logging.warning("The ping was unsuccessful.  Server is offline or not responding to ping.")
