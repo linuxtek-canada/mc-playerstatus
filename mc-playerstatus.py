@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-#Author:    TheOneBlackMage
-#Email:     theoneblackmage@gmail.com
+#Author:    Jason Paul 
+#Email:     jasonpa@gmail.com
 
 # This is the mc-playerstatus main script.  Check to see how many users are on the server.  If there are 0 players for over 30 minutes, shut down the server.
 # This script is intended to run from 12AM-8AM EST to save compute on GCP
@@ -12,23 +12,26 @@
 # SSH Keys will already need to be copied to the remote server so the script is able to log in using the public key - ssh-copy-id or other method.
 # SSH passwords are not supported via this method.
 
-import mcstatus
 import subprocess
 import re
+import os
+import sys
 import time
 import math
 from datetime import datetime
 import logging
+import atexit
+
 
 #Edit these values
 server_name = "minecraft.linuxtek.ca"                       #Server to monitor
-server_username = "minecraft"                               #User to SSH into the server as.
-server_ssh_id_path = "/home/minecraft/.ssh/id_rsa"      #Path to SSH Public Key
+server_username = "minecraft"                               #User to SSH into the server as
+server_ssh_id_path = "/home/minecraft/.ssh/id_rsa"          #Path to SSH Public Key
 shutdown_threshold = 10                                     #In Minutes
 check_interval = 1                                          #In Minutes
-start_hour = 13                                             #Hour the script is valid to run from - Midnight
-stop_hour = 23                                              #Hour the script is valid to run until - 8AM
-
+start_hour = 13                                             #Hour the script is valid to run from
+stop_hour = 23                                              #Hour the script is valid to run until
+error_threshold = 10                                        #How many errors the script encounters on its loop before being shut down
 
 #Log Init - Adjust logging level if needed
 logging.basicConfig(filename='mc-playerstatus.log', format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
@@ -36,17 +39,27 @@ logging.basicConfig(filename='mc-playerstatus.log', format='%(asctime)s - %(leve
 #Script Start
 shutdown_count = 0
 error_count = 0
-error_threshold = 10
+
+#Initialize PIDFile 
+pid = str(os.getpid())
+pidfile = "/tmp/mc-playerstatus.pid"
 
 logging.info('#####################################################')
-logging.info('Script Startup.  Shutdown Count = %s.', shutdown_count)
+logging.info('Script Starting with PID %s.  Shutdown Count = %s.', pid, shutdown_count)
 logging.info('#####################################################')
+
+if os.path.isfile(pidfile):
+    logging.debug("PID File %s already exists.  Script is already running.  Exiting.", pidfile)
+    exit(1)
+
+open(pidfile, 'w').write(pid)
 
 this_hour = datetime.now().hour
 logging.debug("The current hour is %s",this_hour)
 
 while True:
-    #Check if the script is running between the set hours.  If not, exit successfully
+
+    #Check if the script is running between the set hours.  If not, exit successfully.
     if ((this_hour >= start_hour) and (this_hour <= stop_hour)):
         logging.debug("The script will run during this time.")
     else: 
@@ -99,9 +112,11 @@ while True:
 
             #Run SSH command on Minecraft server to run backup script - this will need to be optional for anyone who doesn't run such a script.
             #This section may need to be commented out, or the COMMAND changed to something non-critical.  Leaving Hello World test command as an option.
-            #COMMAND = "echo 'Hello World' >> /home/minecraft/test.txt"
+           
+           #COMMAND = "bash /home/minecraft/mc-backup.sh"
+            COMMAND = "echo 'Hello World' >> /home/minecraft/test.txt"  #DEBUG ONLY
 
-            COMMAND = "bash /home/minecraft/mc-backup.sh"
+
             ssh = subprocess.Popen(['ssh', '-i', server_ssh_id_path, "{}@{}".format(server_username,server_name), COMMAND],shell=False,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             res = ssh.communicate()
             logging.debug("Subprocess Return Code: %s",ssh.returncode)
@@ -112,25 +127,28 @@ while True:
             
             if ssh.returncode == 0:
                 logging.info("The backup script was successfully run")
-                exit(0)
             else:
                 logging.warning("The backup script failed to run.  Server will not be shut down.")
                 shutdown_count = 0
                 logging.warning("Resetting Shutdown Count to %s",shutdown_count)
                
             #If the backup succeeds, proceed to shutdown the server.
-            
-            COMMAND = "sudo shutdown -h now"
+            logging.info("Attempting to shut down the server...")
+            #COMMAND = "sudo shutdown -h now"
+            COMMAND = 'echo "Hello World" >> test.txt'  #DEBUG ONLY
+
             ssh = subprocess.Popen(['ssh', '-i', server_ssh_id_path, "{}@{}".format(server_username,server_name), COMMAND],shell=False,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             res = ssh.communicate()
             logging.debug("Subprocess Return Code: %s",ssh.returncode)
             
             if ssh.returncode == 0:
                 logging.info("Server %s shut down successfully",server_name)
+                os.remove(pidfile)
                 exit(0)
             else:
                 logging.warning("Server shutdown was unsuccessful.")
-                exit(1)             
+                logging.debug("Incrementing Error Count to %s.",error_count)
+                error_count = error_count + 1
     else:
         #If the ping is unsuccessful, increment the error count.
         logging.warning("The ping was unsuccessful.  Server is offline or not responding to ping.")
